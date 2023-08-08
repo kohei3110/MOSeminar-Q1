@@ -2,12 +2,10 @@ package com.kohei3110.azuresdksample;
 
 import com.kohei3110.azuresdksample.repository.CreateCosmosItemRepository;
 import com.kohei3110.azuresdksample.repository.CreateMySQLItemRepository;
-import com.kohei3110.azuresdksample.repository.GetConfigRepository;
 import com.kohei3110.azuresdksample.repository.LocalStoreRepository;
 import com.kohei3110.azuresdksample.repository.UploadBlobRepository;
 import com.kohei3110.azuresdksample.service.CreateCosmosItemService;
 import com.kohei3110.azuresdksample.service.CreateMySQLItemService;
-import com.kohei3110.azuresdksample.service.GetConfigService;
 import com.kohei3110.azuresdksample.service.LocalStoreService;
 import com.kohei3110.azuresdksample.service.UploadBlobService;
 
@@ -21,8 +19,6 @@ public class Factory {
     private LocalStoreService localStoreService;
     private UploadBlobRepository uploadBlobRepository;
     private UploadBlobService uploadBlobService;
-    private GetConfigRepository getConfigRepository;
-    private GetConfigService getConfigService;
 
     public Factory() {
         this.createMySQLItemRepository = new CreateMySQLItemRepository();
@@ -33,8 +29,6 @@ public class Factory {
         this.localStoreService = new LocalStoreService(this.localStoreRepository);
         this.uploadBlobRepository = new UploadBlobRepository();
         this.uploadBlobService = new UploadBlobService(this.uploadBlobRepository);
-        this.getConfigRepository = new GetConfigRepository();
-        this.getConfigService = new GetConfigService(this.getConfigRepository);
     }
 
     public CreateMySQLItemService injectCreateMySQLItemService() {
@@ -51,9 +45,5 @@ public class Factory {
 
     public UploadBlobService injectUploadBlobService() {
         return this.uploadBlobService;
-    }
-
-    public GetConfigService injectGetConfigService() {
-        return this.getConfigService;
     }
 }
