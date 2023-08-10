@@ -56,6 +56,10 @@ public class CreateCosmosItemRepository {
         return response.getItem();
     }
 
+    // 結果を受け取った後、結果に対して CPU 負荷の高い操作を実行する場合は、イベント ループ IO netty
+    // スレッドでは行わないようにする必要があります。 次に示すように、代わりに独自のスケジューラを用意して、処理を実行するための独自のスレッドを提供できます。
+    // 処理の種類に基づいて、処理に適した既存の Reactor Scheduler を使用する必要があります。
+    // 【参考】https://projectreactor.io/docs/core/release/api/reactor/core/scheduler/Schedulers.html
     public Member createAsync(Member member) {
         Mono<CosmosItemResponse<Member>> mono = this.cosmosAsyncContainer.createItem(member);
         mono
