@@ -15,7 +15,6 @@
 	<description>Demo project for Azure SDK for Java Sample</description>
 	<properties>
 		<java.version>17</java.version>
-		<spring.config.version>4.0.4</spring.config.version>
 		<cosmos.version>4.30.0</cosmos.version>
 		<jackson.version>2.15.2</jackson.version>
 		<lombok.version>1.18.28</lombok.version>
@@ -31,11 +30,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-			<version>${spring.config.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
