@@ -1,38 +1,33 @@
-# Java
-*.class
-*.jar
-*.war
-*.ear
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# Eclipse
-.project
+### STS ###
+.apt_generated
 .classpath
+.factorypath
+.project
 .settings
+.springBeans
+.sts4-cache
 
-# Idea
+### IntelliJ IDEA ###
 .idea
-*.iml
 *.iws
+*.iml
 *.ipr
 
-# OS
-Thumbs.db
-.DS_Store
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
 
-# Gradle
-.gradle
-!gradle-wrapper.jar
-
-# Maven
-target
-
-# Build
-out
-build
-bin
-
-# Other
-*.log
-*.swp
-*.bak
-application.properties
+### VS Code ###
+.vscode/
