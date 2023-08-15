@@ -1,0 +1,146 @@
+openapi: 3.0.3
+info:
+  title: エキスパートになるための Azure PaaS での Java 開発！サンプル API
+  description: |-
+    本 API は、「エキスパートになるための Azure PaaS での Java 開発！」において作成したサンプル API です。
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: Azure SDK for Java のドキュメント
+  url: https://learn.microsoft.com/ja-jp/azure/developer/java/sdk/
+servers:
+  - url: https://<YOUR_AZURE_RESOURCES_URL>/
+tags:
+  - name: member
+    description: メンバー（サンプル）
+  - name: file
+    description: ファイル（サンプル）
+paths:
+  /items/mysql:
+    post:
+      tags:
+        - member
+      summary: メンバー作成（Azure Database for MySQL）
+      description: メンバーを Azure Database for MySQL に作成
+      operationId: createMemberMySQL
+      requestBody:
+        description: 作成されるメンバー
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Member'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '404':
+          description: URL not found
+        '500':
+          description: Internal Server Error
+  /items/cosmos/sync:
+    post:
+      tags:
+        - member
+      summary: メンバー作成（Cosmos DB / 同期処理）
+      description: メンバーを Cosmos DB に作成（同期処理）
+      operationId: createMemberCosmosSync
+      requestBody:
+        description: 作成されるメンバー
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Member'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '404':
+          description: URL not found
+        '500':
+          description: Internal Server Error
+  /items/cosmos/async:
+    post:
+      tags:
+        - member
+      summary: メンバー作成（Cosmos DB / 非同期処理）
+      description: メンバーを Cosmos DB に作成（非同期処理）
+      operationId: createMemberCosmosAsync
+      requestBody:
+        description: 作成されるメンバー
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Member'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Member'
+        '404':
+          description: URL not found
+        '500':
+          description: Internal Server Error
+  /items/blob:
+    post:
+      tags:
+        - file
+      summary: ファイルアップロード
+      description: ファイルを Blob Storage にアップロード
+      operationId: uploadBlob
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Successful operation
+        '404':
+          description: URL not found
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    Member:
+      required:
+        - id
+      type: object
+      properties:
+        id:
+          type: string
+          example: 111
+        name:
+          type: string
+          example: 太郎
+        email:
+          type: string
+          description: メールアドレス
+  requestBodies:
+    Member:
+      description: Member object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Member'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Member'
